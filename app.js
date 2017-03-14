@@ -175,7 +175,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function closeCurrentTab() {
 	var tabIndex = getActiveTabIndex();
-	var tabElement = document.getElementsByClassName('tab')[tanIndex];
+	var tabElement = document.getElementsByClassName('tab')[tabIndex];
 	makeNextTabActive();
 	closeTab(tabElement);
     }
