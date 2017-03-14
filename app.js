@@ -173,6 +173,13 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    function closeCurrentTab() {
+	var tabIndex = getActiveTabIndex();
+	var tabElement = document.getElementsByClassName('tab')[tanIndex];
+	makeNextTabActive();
+	closeTab(tabElement);
+    }
+
     /**
      * get all tabs from all windows and populates the list
      */
@@ -242,6 +249,16 @@ document.addEventListener('DOMContentLoaded', function () {
                             }
                         })(tab));
 
+                    tabEl.addEventListener("auxclick",
+                        (function (tabElement) {
+                            return function (e) {
+				if(e.button === 1) {
+				    e.stopPropagation();
+				    closeTab(tabElement);
+				}
+                            }
+                        })(tabEl));
+
                     tabEl.addEventListener("dblclick",
                         (function (tab, tabElement) {
                             return function () {
@@ -280,6 +297,9 @@ document.addEventListener('DOMContentLoaded', function () {
             case 27: //esc
                 window.close();
                 break;
+	    case 46: //delete
+		closeCurrentTab();
+		break;
         }
     };
 
